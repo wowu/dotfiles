@@ -1,0 +1,179 @@
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod1
+
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango: System San Francisco Display 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+# set new window's border
+hide_edge_borders both
+new_window 1pixel
+new_float 1pixel
+
+# start a terminal
+bindsym $mod+Return exec gnome-terminal #i3-sensible-terminal
+
+# printscreen
+bindsym --release Print exec --no-startup-id scrot -s ~/foo.png && xclip -selection c -t image/png ~/foo.png && rm ~/foo.png
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec dmenu_run
+
+bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -padding "24" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbf "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# window keybindings
+bindsym $mod+shift+q kill
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# set workspace names
+set $workspace1 "1. Firefox"
+set $workspace2 "2. Terminale"
+set $workspace3 "3. Sublime"
+set $workspace4 "4. Telegram"
+set $workspace5 "5. "
+set $workspace6 "6. "
+set $workspace7 "7. "
+set $workspace8 "8. "
+set $workspace9 "9. "
+set $workspace10 "10. "
+
+# workspaces's keybindings
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $workspace1; workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2; workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3; workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4; workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5; workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6; workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7; workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8; workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9; workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10; workspace $workspace10
+
+# settings for apps
+for_window [class="Telegram"] floating enable
+for_window [class="telegram"] floating enable
+
+assign [class="Firefox"] $workspace1
+assign [class="Sublime_text"] $workspace3
+assign [class="Telegram"] $workspace4
+assign [class="telegram"] $workspace4
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# set colors
+set $bg-color #2f343f
+set $inactive-bg-color #2f343f
+set $text-color #f3f4f5
+set $inactive-text-color #676e7d
+set $urgent-bg-color #e53935
+
+#                         border              background          text                  indicator
+client.focused            $bg-color           $bg-color           $text-color           #00ff00
+client.unfocused          $inactive-bg-color  $inactive-bg-color  $inactive-text-color  #00ff00
+client.focused_inactive   $inactive-bg-color  $inactive-bg-color  $inactive-text-color  #00ff00
+client.urgent             $urgent-bg-color    $urgent-bg-color    $text-color           #00ff00
+
+bar {
+  status_command i3status
+  tray_output primary
+  position bottom
+  #font pango: Liberation Sans 10
+
+    colors {
+      background $bg-color
+      separator #757575
+
+      #                   border              background          text
+      focused_workspace   $bg-color           $bg-color           $text-color
+      inactive_workspace  $inactive-bg-color  $inactive-bg-color  $inactive-text-color
+      urgent_workspace    $urgent-bg-color    $urgent-bg-color    $text-color
+    }
+}
+
+
+# set wallpaper
+exec_always feh --bg-scale ~/Documents/wallhaven-333472.png
+
+# networkmanager applet
+exec --no-startup-id nm-applet
+
+gaps inner 16
