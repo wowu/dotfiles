@@ -1,13 +1,12 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango: System San Francisco Display 10
+font pango: System San Francisco Display 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 
 # set new window's border
 hide_edge_borders both
@@ -15,10 +14,17 @@ new_window 1pixel
 new_float 1pixel
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal #i3-sensible-terminal
+bindsym $mod+Return exec urxvt #i3-sensible-terminal
 
 # printscreen
 bindsym --release Print exec --no-startup-id scrot -s ~/foo.png && xclip -selection c -t image/png ~/foo.png && rm ~/foo.png
+
+# set colors
+set $bg-color #111625
+set $inactive-bg-color #111625
+set $text-color #f3f4f5
+set $inactive-text-color #676e7d
+set $urgent-bg-color #e53935
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -67,10 +73,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # set workspace names
-set $workspace1 "1. Firefox"
-set $workspace2 "2. Terminale"
-set $workspace3 "3. Sublime"
-set $workspace4 "4. Telegram"
+set $workspace1 "1. "
+set $workspace2 "2. "
+set $workspace3 "3. "
+set $workspace4 "4. "
 set $workspace5 "5. "
 set $workspace6 "6. "
 set $workspace7 "7. "
@@ -139,13 +145,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# set colors
-set $bg-color #2f343f
-set $inactive-bg-color #2f343f
-set $text-color #f3f4f5
-set $inactive-text-color #676e7d
-set $urgent-bg-color #e53935
-
 #                         border              background          text                  indicator
 client.focused            $bg-color           $bg-color           $text-color           #00ff00
 client.unfocused          $inactive-bg-color  $inactive-bg-color  $inactive-text-color  #00ff00
@@ -171,7 +170,7 @@ bar {
 
 
 # set wallpaper
-exec_always feh --bg-scale ~/Documents/wallhaven-333472.png
+exec_always feh --bg-scale ~/Desktop/wallhaven-15745.jpg
 
 # networkmanager applet
 exec --no-startup-id nm-applet
