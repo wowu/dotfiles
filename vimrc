@@ -160,3 +160,10 @@ set diffopt+=vertical
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
+
+" no wrap
+set wrap
+set textwidth=0 wrapmargin=0
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
