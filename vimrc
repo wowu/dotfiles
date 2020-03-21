@@ -167,3 +167,12 @@ set textwidth=0 wrapmargin=0
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+execute pathogen#infect()
+call pathogen#helptags()
+
+" Begin commits from the start
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
+" Install fzf
+set rtp+=/usr/local/opt/fzf
+
