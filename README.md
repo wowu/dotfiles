@@ -1,3 +1,3 @@
-# My dotfiles
+# My server  dotfiles
 
-Use `server` directory for server dotfiles.
+For Mac dotfiles, check [wowu/mac-dotfiles](https://github.com/wowu/mac-dotfiles).
