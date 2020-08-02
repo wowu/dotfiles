@@ -12,7 +12,7 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 
-set number relativenumber " Show relative line numbers
+" set number relativenumber " Show relative line numbers
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -165,14 +165,6 @@ endif
 set wrap
 set textwidth=0 wrapmargin=0
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Allow saving files as root when I forgot to start vim with sudo
 cmap w!! w !sudo tee > /dev/null %
-execute pathogen#infect()
-call pathogen#helptags()
-
-" Begin commits from the start
-autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-
-" Install fzf
-set rtp+=/usr/local/opt/fzf
 
