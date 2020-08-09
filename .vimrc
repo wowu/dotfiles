@@ -81,10 +81,6 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Make it obvious where 80 characters is
-" set textwidth=80
-" set colorcolumn=+1
-
 " Numbers
 set number
 set numberwidth=5
@@ -112,12 +108,6 @@ map <Leader>ct :!ctags -R .<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-rspec mappings
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
